@@ -6,7 +6,7 @@ import { Transaction } from '../interfaces/electrs.interface';
 import { Subscription } from 'rxjs';
 import { ApiService } from './api.service';
 import { take } from 'rxjs/operators';
-import { TransferState, makeStateKey } from '@angular/platform-browser';
+import { TransferState, makeStateKey } from '@angular/core';
 import { CacheService } from './cache.service';
 
 const OFFLINE_RETRY_AFTER_MS = 2000;
