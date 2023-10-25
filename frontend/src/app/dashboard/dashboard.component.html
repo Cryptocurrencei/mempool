@@ -61,10 +61,10 @@
             </table>
           </div>
           <ng-template #mempoolGraph>
-            <div class="mempool-graph" *ngIf="{ value: (mempoolStats$ | async) } as mempoolStats">
+            <div class="mempool-graph" *ngIf="(mempoolStats$ | async) as mempoolStats">
               <app-incoming-transactions-graph
                 [left]="50"
-                [data]="mempoolStats.value?.weightPerSecond"
+                [data]="mempoolStats?.weightPerSecond"
                 [windowPreferenceOverride]="'2h'"
                 ></app-incoming-transactions-graph>
             </div>

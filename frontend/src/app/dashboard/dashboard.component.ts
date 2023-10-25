@@ -1,12 +1,13 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { combineLatest, merge, Observable, of, Subscription } from 'rxjs';
-import { catchError, filter, map, scan, share, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, scan, share, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { BlockExtended, OptimizedMempoolStats } from '../interfaces/node-api.interface';
 import { MempoolInfo, TransactionStripped, ReplacementInfo } from '../interfaces/websocket.interface';
 import { ApiService } from '../services/api.service';
 import { StateService } from '../services/state.service';
 import { WebsocketService } from '../services/websocket.service';
 import { SeoService } from '../services/seo.service';
+import { TransferState } from '@angular/core';
 
 interface MempoolBlocksData {
   blocks: number;
@@ -200,7 +201,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
             return null;
           }
         }),
-        share(),
+        shareReplay(1),
       );
 
     if (this.stateService.network === 'liquid' || this.stateService.network === 'liquidtestnet') {
