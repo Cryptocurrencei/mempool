@@ -7,7 +7,6 @@ import { ApiService } from '../services/api.service';
 import { StateService } from '../services/state.service';
 import { WebsocketService } from '../services/websocket.service';
 import { SeoService } from '../services/seo.service';
-import { TransferState } from '@angular/core';
 
 interface MempoolBlocksData {
   blocks: number;
