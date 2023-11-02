@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, share } from 'rxjs';
+import { map, Observable, share, tap } from 'rxjs';
 import { ApiService } from '../../services/api.service';
 import { SeoService } from '../../services/seo.service';
 import { getFlagEmoji } from '../../shared/common.utils';
@@ -21,6 +21,7 @@ export class NodesPerCountry implements OnInit {
   constructor(
     private apiService: ApiService,
     private seoService: SeoService,
+    private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
   ) {
     for (let i = 0; i < 20; ++i) {
@@ -86,6 +87,9 @@ export class NodesPerCountry implements OnInit {
             topIsp: topIsp,
             ispCount: Object.keys(isps).length
           };
+        }),
+        tap(() => {
+          this.cd.markForCheck();
         }),
         share()
       );

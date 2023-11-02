@@ -78,7 +78,7 @@ export class BlockOverviewGraphComponent implements AfterViewInit, OnDestroy, On
   constructor(
     readonly ngZone: NgZone,
     readonly elRef: ElementRef,
-    private stateService: StateService,
+    public stateService: StateService,
   ) {
     this.vertexArray = new FastVertexArray(512, TxSprite.dataSize);
     this.searchSubscription = this.stateService.searchText$.subscribe((text) => {
