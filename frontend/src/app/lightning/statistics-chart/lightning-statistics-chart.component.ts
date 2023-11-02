@@ -11,6 +11,7 @@ import { download } from '../../shared/graphs.utils';
 import { LightningApiService } from '../lightning-api.service';
 import { AmountShortenerPipe } from '../../shared/pipes/amount-shortener.pipe';
 import { isMobile } from '../../shared/common.utils';
+import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'app-lightning-statistics-chart',
@@ -53,6 +54,7 @@ export class LightningStatisticsChartComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private storageService: StorageService,
     private miningService: MiningService,
+    public stateService: StateService,
     private amountShortenerPipe: AmountShortenerPipe,
   ) {
   }
